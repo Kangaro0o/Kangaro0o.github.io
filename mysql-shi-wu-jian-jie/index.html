@@ -1,0 +1,486 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>MySQL 事务简介 - 天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="MySQL 事务简介 - 天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="
+
+
+前言
+事务
+
+事务的四个特性
+
+原子性（Atomicity）
+隔离性（Isolation）
+一致性（Consistency）
+持久性（Durability）
+
+
+事务的状态
+
+
+🌈扩展知识：
+
+
+
+
+前言
+对于大部分程序员来说，他们..." />
+  <meta property="og:title" content="MySQL 事务简介 - 天机阁">
+  <meta property="og:description" content="
+
+
+前言
+事务
+
+事务的四个特性
+
+原子性（Atomicity）
+隔离性（Isolation）
+一致性（Consistency）
+持久性（Durability）
+
+
+事务的状态
+
+
+🌈扩展知识：
+
+
+
+
+前言
+对于大部分程序员来说，他们..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://kangaro0o.github.io/mysql-shi-wu-jian-jie/" />
+  <meta property="og:image" content="https://kangaro0o.github.io//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="MySQL 事务简介 - 天机阁">
+  <meta name="twitter:description" content="
+
+
+前言
+事务
+
+事务的四个特性
+
+原子性（Atomicity）
+隔离性（Isolation）
+一致性（Consistency）
+持久性（Durability）
+
+
+事务的状态
+
+
+🌈扩展知识：
+
+
+
+
+前言
+对于大部分程序员来说，他们...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kangaro0o.github.io/mysql-shi-wu-jian-jie/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://kangaro0o.github.io//media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://kangaro0o.github.io/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      天机阁
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          MySQL 事务简介
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-07-13 · 9 min read</div>
+          
+            <a href="https://kangaro0o.github.io/LdtovkoBP/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              MySQL
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ul>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E6%80%A7">事务的四个特性</a>
+<ul>
+<li><a href="#%E5%8E%9F%E5%AD%90%E6%80%A7atomicity">原子性（Atomicity）</a></li>
+<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7isolation">隔离性（Isolation）</a></li>
+<li><a href="#%E4%B8%80%E8%87%B4%E6%80%A7consistency">一致性（Consistency）</a></li>
+<li><a href="#%E6%8C%81%E4%B9%85%E6%80%A7durability">持久性（Durability）</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%8A%B6%E6%80%81">事务的状态</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86">🌈扩展知识：</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="前言">前言</h2>
+<p>对于大部分程序员来说，他们的任务就是<strong>把现实世界的业务场景映射到数据库世界</strong>中。<br>
+银行为了存储人们的账户信息而建立一个 <code>account</code> 表：</p>
+<pre><code class="language-sql">CREATE TABLE account (
+	id INT NOT NULL AUTO_INCREMENT COMMENT '自增id',
+	name VARCHAR(100) COMMENT '客户名称',
+	balance INT COMMENT '余额',
+	PRIMARY KEY (id)
+) Engine=InnoDB CHARSET=utf8;
+</code></pre>
+<p>kelvin 和 bob 在银行各自开设了账户，俩人在现实世界的资产就会体现在数据库世界的 account 表中。<br>
+假设现在 kelvin 有15元，bob 只有5元。</p>
+<pre><code>+----+--------+---------+
+| id | name   | balance |
++----+--------+---------+
+|  1 | kelvin |      15 |
+|  2 | bob    |       5 |
++----+--------+---------+
+</code></pre>
+<p>随着时间的流逝，kelvin 和 bob 可能陆续向银行账户中存钱、取钱或者向别人转账，他们账户中的余额也因此发生变动。</p>
+<p>比如，有一次 bob 着急用钱，急忙打电话向 kelvin 借了10块钱。现实世界中的 kelvin 走向银行 ATM机，输入 bob 的账号以及10元转账金额，然后按下确认键之后就拔卡走人了。</p>
+<p>对于数据库世界来说，这相当于执行了下面这两条语句：</p>
+<pre><code class="language-sql">UPDATE account SET balance = balance - 10 WHERE id = 1;
+UPDATE account SET balance = balance + 10 WHERE id = 2;
+</code></pre>
+<p>但是这里有个问题：如果上述两条语句只执行了一条时，服务器忽然断电了，这该咋办？把 kelvin 的钱扣了，但是没给 bob 转过去，这问题就大了。<br>
+为了解决这个问题，数据库设计者引入了事务的概念。</p>
+<h2 id="事务">事务</h2>
+<p>我们把需要保证<strong>原子性、隔离性、一致性和持久性</strong>的一个或多个数据库操作称为事务。</p>
+<h3 id="事务的四个特性">事务的四个特性</h3>
+<h4 id="原子性atomicity">原子性（Atomicity）</h4>
+<p>在现实世界中，转账操作是一个不可分割的操作。也就是说，要么压根就没转，要么转账成功，不能存在中间状态，也就是转了一半的这种情况。我们把这种“<strong>要么全做，要么全不做</strong>”的规则称为原子性。</p>
+<h4 id="隔离性isolation">隔离性（Isolation）</h4>
+<p>在现实世界中，两次转账状态应该是互不影响的。比如 kelvin 向 bob 同时转了两次5块钱（假设同时操作）。那么最后 bob 的账户里肯定多10块钱，kelvin 账户里肯定少了10块钱。</p>
+<p>但是对应到数据库世界中，事情又变得复杂了一些。为了简化问题，我们粗略假设 kelvin 向 bob 转账5块钱的过程如下：</p>
+<ol>
+<li>读取 kelvin 账户的余额到变量 <code>A</code> 中：简写为 <code>read(A)</code>。</li>
+<li>将 kelvin 账户的余额减去转账金额：简写为 <code>A = A - 5</code>。</li>
+<li>将 kelvin 账户修改过的余额写到磁盘中，简写为 <code>write(A)</code>。</li>
+<li>读取 bob 账户的余额到变量 <code>B</code> 中：简写为 <code>read(B)</code>。</li>
+<li>将 bob 账户的余额加上转账金额：简写为 <code>B = B + 5</code>。</li>
+<li>将 bob 账户修改过的余额写到磁盘中：简写为：<code>write(B)</code>。</li>
+</ol>
+<p>我们将 kelvin 向 bob 同时进行的两次转账操作分别称为 <code>T1</code> 和 <code>T2</code>。<br>
+在现实世界中 <code>T1</code> 和 <code>T2</code> 应该是没有关系的，可以先执行完 <code>T1</code>，再执行 <code>T2</code>；或者先执行完 <code>T2</code>，再执行 <code>T1</code>。如下图所示。<br>
+<img src="https://kangaro0o.github.io//post-images/1657692650148.png#center" alt="转账操作对应的数据库操作" loading="lazy"></p>
+<center><small>转账操作对应的数据库操作</small></center>
+<p>但是在真实的数据库中，T1 和 T2 的操作可能交替执行，如下图所示。<br>
+<img src="https://kangaro0o.github.io//post-images/1657693194393.png#center" alt="真实的数据库中T1和T2的操作" loading="lazy"></p>
+<center><small>真实的数据库中T1和T2的操作</small></center>
+如果按照上面交替执行的T1和T2来看，最终 kelvin 的账户还剩10块钱，相当于只扣了5块钱，但是 bob 的账户里变成了15块，相当于多了10块钱。这样一来，银行怕不是要破产。
+<p>所以对于现实世界中状态转换对应的某些数据库操作来说，不仅要保证这些操作以原子性的方式执行完成，而且要保证其他的状态转换不会影响到本次状态转换，这个规则称为隔离性。</p>
+<h4 id="一致性consistency">一致性（Consistency）</h4>
+<p>我们生活的现实世界中存在形形色色的约束，比如身份证号不能重复、性别只能是男或者女、人民币的最大面值只能是100（现在是2022年）、红绿灯只能有3种颜色等。只有符合这些约束的数据才是有效的。<br>
+数据库世界只是现实世界的一个映射，现实世界中存在的约束当然也要在数据库世界中有所体现。如果数据库中的数据全部符合现实世界中的约束，我们就说这些数据就是一致的，或者说符合一致性的。</p>
+<p>如何保证数据库中数据的一致性呢（就是符合所有现实世界的约束）？主要靠下面两方面：</p>
+<ol>
+<li>数据库本身能为我们解决一部分一致性需求<br>
+我们知道，MySQL 数据库可以为表建立主键、唯一索引、外键，还可以声明某个列为 NOT NULL 来拒绝 NULL 值的插入。</li>
+<li>更多的一致性需求需要靠写业务代码的程序员自己保证<br>
+现实世界中复杂的一致性需求比比皆是，而由于性能问题把一致性需求交给数据库来解决也是不现实的，所以需要程序员自己保证一部分数据的一致性。</li>
+</ol>
+<h4 id="持久性durability">持久性（Durability）</h4>
+<p>当现实世界中的一个状态转换后，这个转换的结果将永久保留，这个规则被叫做持久性。<br>
+当把现实世界的状态转换映射到数据库世界时，持久性意外着该次转换对应的数据库操作所修改的数据都应该在磁盘中保留下来，无论之后发生什么事故，本次转换造成的影响都不应该丢失。</p>
+<h3 id="事务的状态">事务的状态</h3>
+<p>我们现在知道，事务是一个抽象的概念，它其实对应着一个或多个数据库操作。我们根据这些操作所执行的不同阶段把事务大致划分成了下面几个状态。</p>
+<ul>
+<li>活动的（active）：事务对应的数据库操作正在执行过程中，我们就说该事务处于活动的状态。</li>
+<li>部分提交的（partially committed）：当事务中的最后一个操作执行完成，但由于操作都在内存中执行，所造成的影响并没有刷新到磁盘时，我们就说该事务处于部分提交的状态。</li>
+<li>失败的（failed）：当事务处于活动的状态或者部分提交状态时，可能遇到某些错误（数据库自身的错误、操作系统错误或者直接断电等）而无法继续执行，或者人为停止了当前事务的执行，我们就说该事务处于失败的状态。</li>
+<li>中止的（aborted）：如果事务执行了半截而变为失败的状态，比如前言中所说的 kelvin 向 bob 转账的事务，当 kelvin 账户的钱被扣除，但是 bob 账户的钱没有增加时遇到了错误，从而导致当前事务处在了失败的状态，那么就需要把已经修改的 kelvin 的账户余额调整为未转账之前的金额。换句话说，就是要撤销失败事务对当前数据库造成的影响。这个撤销的过程用书面点的话说就是：<strong>回滚</strong>。当回滚操作执行完毕后，也就是数据库恢复到执行事务之前的状态，我们就说该事务处于中止的状态。</li>
+<li>提交的（committed）：当一个处于部分提交的状态的事务将修改过的数据都刷新到磁盘中之后，我们就可以说该事务处于提交的状态。</li>
+</ul>
+<p>事务的状态转换图，如下图所示：<br>
+<img src="https://kangaro0o.github.io//post-images/1657695121623.png#center" alt="事务的状态转换图" loading="lazy"></p>
+<center><small>事务的状态转换图</small></center>
+<p>从图中可以看出，只有当事务处于提交的或者中止的状态时，一个事务的生命周期才算是结束了。对于已经提交的事务来说，该事务对数据库所做的修改将永久生效；对于处于中止状态的事务来说，该事务对数据库所做的所有修改都会被回滚到没执行该事务之前的状态。</p>
+<p>写在最后：在 MySQL 中，并不是所有的存储引擎都支持事务的功能，目前只有 <code>InnoDB</code> 和 <code>NDB</code> 存储引擎支持。</p>
+<h2 id="扩展知识">🌈扩展知识：</h2>
+<ul>
+<li>InnoDB 引擎使用 <code>redo log</code> 保证事务的<strong>持久性</strong>，使用 <code>undo log</code> 来保证事务的<strong>原子性</strong>。</li>
+<li>InnoDB 引擎通过 <strong>锁机制、MVCC</strong> 等手段来保证事务的隔离性（默认支持的隔离级别是 <code>REPEATABLE-READ</code>）。</li>
+<li>保证了事务的持久性、原子性、隔离性之后，一致性才能得到保障。</li>
+</ul>
+<blockquote>
+<p>本文参考 《MySQL是怎样运行的》 小孩子4919 著</p>
+</blockquote>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ul>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E6%80%A7">事务的四个特性</a>
+<ul>
+<li><a href="#%E5%8E%9F%E5%AD%90%E6%80%A7atomicity">原子性（Atomicity）</a></li>
+<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7isolation">隔离性（Isolation）</a></li>
+<li><a href="#%E4%B8%80%E8%87%B4%E6%80%A7consistency">一致性（Consistency）</a></li>
+<li><a href="#%E6%8C%81%E4%B9%85%E6%80%A7durability">持久性（Durability）</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%8A%B6%E6%80%81">事务的状态</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86">🌈扩展知识：</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://kangaro0o.github.io//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'S0EEJcJBfJYwFrxzaftrwGay-gzGzoHsz',
+    appKey: 'ORcgXh6yyLPwN5ajJeGvpR5g',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,405 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>MVCC 多版本并发控制 - 天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="MVCC 多版本并发控制 - 天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="
+
+
+版本链
+ReadView（一致性视图）
+生成 ReadView 的时机
+MVCC 小结
+
+
+
+
+版本链
+对于使用 InnoDB 存储引擎的表来说，它的聚簇索引记录中都包含下面两个必要的隐藏列：
+
+trx_id：一个事务每次对某条聚簇索..." />
+  <meta property="og:title" content="MVCC 多版本并发控制 - 天机阁">
+  <meta property="og:description" content="
+
+
+版本链
+ReadView（一致性视图）
+生成 ReadView 的时机
+MVCC 小结
+
+
+
+
+版本链
+对于使用 InnoDB 存储引擎的表来说，它的聚簇索引记录中都包含下面两个必要的隐藏列：
+
+trx_id：一个事务每次对某条聚簇索..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/" />
+  <meta property="og:image" content="https://kangaro0o.github.io//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="MVCC 多版本并发控制 - 天机阁">
+  <meta name="twitter:description" content="
+
+
+版本链
+ReadView（一致性视图）
+生成 ReadView 的时机
+MVCC 小结
+
+
+
+
+版本链
+对于使用 InnoDB 存储引擎的表来说，它的聚簇索引记录中都包含下面两个必要的隐藏列：
+
+trx_id：一个事务每次对某条聚簇索...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://kangaro0o.github.io//media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://kangaro0o.github.io/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      天机阁
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          MVCC 多版本并发控制
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-07-14 · 5 min read</div>
+          
+            <a href="https://kangaro0o.github.io/LdtovkoBP/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              MySQL
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%89%88%E6%9C%AC%E9%93%BE">版本链</a></li>
+<li><a href="#readview%E4%B8%80%E8%87%B4%E6%80%A7%E8%A7%86%E5%9B%BE">ReadView（一致性视图）</a></li>
+<li><a href="#%E7%94%9F%E6%88%90-readview-%E7%9A%84%E6%97%B6%E6%9C%BA">生成 ReadView 的时机</a></li>
+<li><a href="#mvcc-%E5%B0%8F%E7%BB%93">MVCC 小结</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="版本链">版本链</h2>
+<p>对于使用 InnoDB 存储引擎的表来说，它的聚簇索引记录中都包含下面两个必要的隐藏列：</p>
+<ul>
+<li><code>trx_id</code>：一个事务每次对某条聚簇索引记录进行改动时，都会把该事务的事务 id 赋值给 <code>trx_id</code> 隐藏列；</li>
+<li><code>roll_pointer</code>：每次对某条聚簇索引记录进行改动时，都会把旧的版本写入到 <code>undo</code> 日志中。这个隐藏列就相当于一个指针，可以通过它找到该记录修改前的信息。</li>
+</ul>
+<p>比如，表 <code>account</code> 中现在包含一条记录：</p>
+<pre><code>mysql&gt; SELECT * FROM account WHERE id = 1;
++----+--------+---------+
+| id | name   | balance |
++----+--------+---------+
+|  1 | kelvin |      15 |
++----+--------+---------+
+1 row in set (0.01 sec)
+</code></pre>
+<p>假设插入该记录的事务 id 为80，那么此刻该条记录的示意图如下图所示：<br>
+<img src="https://kangaro0o.github.io//post-images/1657777830854.png#center" alt="插入该记录的事物id为80" loading="lazy"></p>
+<center><small>插入该记录的事物id为80</small></center>
+<p>假设之后有两个事务 id 分别为100、200的事务对这条记录进行 UPDATE 操作：</p>
+<pre><code class="language-sql">UPDATE account SET name='vicky' WHERE id = 1; // 事务id为100
+UPDATE account SET name='peppa' WHERE id = 1; // 事务id为200
+</code></pre>
+<p>每对记录进行一次改动，都会记录一条 <code>undo</code> 日志。每条 <code>undo</code> 日志也都有一个 <code>roll_pointer</code> 属性，通过这个属性可以将这些 <code>undo</code> 日志串成一个链表，如下图所示：<br>
+<img src="https://kangaro0o.github.io//post-images/1657778572525.png#center" alt="页面中的记录和该记录对应的undo日志串成了一个版本链" loading="lazy"></p>
+<center><small>页面中的记录和该记录对应的undo日志串成了一个版本链</small></center>
+<p>在每次更新该记录后，都会将旧值放到一条 <code>undo</code> 日志中（就算是该记录的一个旧版本）。<br>
+<strong>随着更新次数的增多，所有的版本都会被 roll_pointer 属性连接成一个链表，这个链表称为版本链。</strong><br>
+<strong>版本链的头节点就是当前记录的最新值。</strong></p>
+<p>我们会利用这个记录的版本链来控制并发事务访问相同记录时的行为，我们把这种机制称之为<strong>多版本并发控制</strong>（Multi-Version Concurrency Control, MVCC）。</p>
+<h2 id="readview一致性视图">ReadView（一致性视图）</h2>
+<p>对于使用 <code>READ COMMITTED</code> 和 <code>REPEATABLE READ</code> 隔离级别的事务来说，都必须保证读到已经提交的事务修改过的记录。<br>
+也就是说，假如另一个事务已经修改了记录但是尚未提交，则不能直接读取最新版本的记录。<br>
+核心问题是：<strong>需要判断版本链中的哪个版本是当前事务可见的</strong>。数据库设计了 ReadView（一致性视图）来解决此问题。</p>
+<p><code>ReadView</code> 主要包含4个比较重要的内容：</p>
+<ul>
+<li><code>m_ids</code>：在生成 ReadView 时，当前系统中活跃的读写事务的事务id列表。</li>
+<li><code>min_trx_id</code>：在生成 ReadView 时，当前系统中活跃的读写事务中最小的事务id；也就是 m_ids 中的最小值。</li>
+<li><code>max_trx_id</code>：在生成 ReadView 时，系统应该分配给下一个事务的事务id值。</li>
+<li><code>creator_trx_id</code>：生成该 ReadView 的事务的事务id。</li>
+</ul>
+<p>有个 ReadView 之后，在访问某条记录时，只需要按下面步骤判断记录的某个版本是否可见：</p>
+<ol>
+<li>如果被访问版本的 trx_id 属性值与 ReadView 中的 creator_trx_id 值相同，意味着当前事务在访问它自己修改过的记录，所以该版本可以被当前事务访问；</li>
+<li>如果被访问版本的 trx_id 属性值小于 ReadView 中的 min_trx_id 值，表明生成该版本事务在当前事务生成 ReadView 前已经提交，所以该版本可以被当前事务访问；</li>
+<li>如果被访问版本的 trx_id 属性值大于或等于 ReadView 中的 min_trx_id 值，表明生成该版本的事务在当前事务生成 ReadView 后才开启，所以该版本不可以被当前事务访问；</li>
+<li>如果被访问版本的 trx_id 属性值在 ReadView 的 min_trx_id 和 max_trx_id 之间，则需要判断 trx_id 属性是是否在 m_ids 列表中。如果在，则说明创建 ReadView 时生成该版本的事务还是活跃的，该版本不可以被访问；如果不在，则说明创建 ReadView 时生成该版本的事务已经被提交，该版本可以被访问。</li>
+</ol>
+<h2 id="生成-readview-的时机">生成 ReadView 的时机</h2>
+<ul>
+<li><code>Read COMMITTED</code>：每次读取数据前都生成一个 ReadView</li>
+<li><code>REPEATABLE READ</code>：在第一次读取数据时生成一个 ReadView</li>
+</ul>
+<h2 id="mvcc-小结">MVCC 小结</h2>
+<p>所谓的 MVCC 指的就是在使用 <code>READ COMMITTED</code>、<code>REPEATABLE READ</code> 这两种隔离级别的事务执行普通的 SELECT操作时，访问记录的版本链的过程。这样可以使不同事务的 读-写、写-读操作并发执行，从而提升系统性能。<br>
+<code>READ COMMITTED</code>、<code>REPEATABLE READ</code> 这两个隔离级别有一个很大的不同，就是生成 ReadView 的时机不同：<code>READ COMMITTED</code> 在每一次进行普通 SELECT 操作前都会生成一个 ReadView；而 <code>REPEATABLE READ</code> 只在第一次进行普通 SELECT 操作前生成一个 ReadView，之后的查询操作都重复使用这个 ReadView。<br>
+<strong>只有我们进行普通的 SELECT 查询时，MVCC 才生效。</strong></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%89%88%E6%9C%AC%E9%93%BE">版本链</a></li>
+<li><a href="#readview%E4%B8%80%E8%87%B4%E6%80%A7%E8%A7%86%E5%9B%BE">ReadView（一致性视图）</a></li>
+<li><a href="#%E7%94%9F%E6%88%90-readview-%E7%9A%84%E6%97%B6%E6%9C%BA">生成 ReadView 的时机</a></li>
+<li><a href="#mvcc-%E5%B0%8F%E7%BB%93">MVCC 小结</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://kangaro0o.github.io//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'S0EEJcJBfJYwFrxzaftrwGay-gzGzoHsz',
+    appKey: 'ORcgXh6yyLPwN5ajJeGvpR5g',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

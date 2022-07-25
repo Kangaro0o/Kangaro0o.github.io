@@ -1,0 +1,405 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>数据库范式 - 天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="数据库范式 - 天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="范式有哪些？
+1NF 第一范式
+属性（即表中字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。
+1NF 是所有关系型数据库的最基本要求，也就是说关系型数据库中创建的表一定满足第一范式。
+2NF 第二范式
+2NF 在..." />
+  <meta property="og:title" content="数据库范式 - 天机阁">
+  <meta property="og:description" content="范式有哪些？
+1NF 第一范式
+属性（即表中字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。
+1NF 是所有关系型数据库的最基本要求，也就是说关系型数据库中创建的表一定满足第一范式。
+2NF 第二范式
+2NF 在..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://kangaro0o.github.io/shu-ju-ku-fan-shi/" />
+  <meta property="og:image" content="https://kangaro0o.github.io//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="数据库范式 - 天机阁">
+  <meta name="twitter:description" content="范式有哪些？
+1NF 第一范式
+属性（即表中字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。
+1NF 是所有关系型数据库的最基本要求，也就是说关系型数据库中创建的表一定满足第一范式。
+2NF 第二范式
+2NF 在...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kangaro0o.github.io/shu-ju-ku-fan-shi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://kangaro0o.github.io//media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://kangaro0o.github.io/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      天机阁
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          数据库范式
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-07-12 · 3 min read</div>
+          
+            <a href="https://kangaro0o.github.io/LdtovkoBP/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              MySQL
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="范式有哪些">范式有哪些？</h2>
+<h3 id="1nf-第一范式">1NF 第一范式</h3>
+<p>属性（即表中字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。<br>
+<strong>1NF 是所有关系型数据库的最基本要求</strong>，也就是说关系型数据库中创建的表一定满足第一范式。</p>
+<h3 id="2nf-第二范式">2NF 第二范式</h3>
+<p>2NF 在 1NF 的基础上，消除了非主属性对于码的部分函数依赖。</p>
+<h3 id="3nf-第三范式">3NF 第三范式</h3>
+<p>3NF 在 2NF 的基础上，消除了非主属性对于码的传递函数依赖。</p>
+<!-- more -->
+<h2 id="函数依赖">函数依赖</h2>
+<p>函数依赖可分为：</p>
+<ul>
+<li>完全函数依赖</li>
+<li>部分函数依赖</li>
+<li>传递函数依赖</li>
+</ul>
+<h3 id="完全函数依赖">完全函数依赖</h3>
+<p>关系 R 中，X、Y是属性集，X 决定 Y 的值（X-&gt;Y），且任何一个 X(子) 都没办法决定 Y 的值。<br>
+设一个学生选课信息的关系模式SC：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">SNO</th>
+<th style="text-align:left">CNO</th>
+<th style="text-align:left">CTITLE</th>
+<th style="text-align:left">INAME</th>
+<th style="text-align:left">IPLACE</th>
+<th style="text-align:left">GRADE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">学号</td>
+<td style="text-align:left">课程编号</td>
+<td style="text-align:left">课程名</td>
+<td style="text-align:left">授课老师</td>
+<td style="text-align:left">老师办公地址</td>
+<td style="text-align:left">成绩</td>
+</tr>
+</tbody>
+</table>
+<p>在此关系中，（学号，课程编号）决定成绩为完全依赖。即其中的单个属性（无论是学号还是课程编号）都无法决定成绩。</p>
+<h3 id="部分函数依赖">部分函数依赖</h3>
+<p>关系 R 中，X、Y 是属性集，X 决定 Y 的值（X-&gt;Y），且 X 其中一个子集满足 X(子) 决定 Y 的值。<br>
+设一个学生住宿登记关系S1：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">SNO</th>
+<th style="text-align:left">SNAME</th>
+<th style="text-align:left">SSEX</th>
+<th style="text-align:left">SROOM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">学号</td>
+<td style="text-align:left">姓名</td>
+<td style="text-align:left">性别</td>
+<td style="text-align:left">宿舍</td>
+</tr>
+</tbody>
+</table>
+<p>在此关系中，存在函数依赖（学号，姓名）决定性别，但其中学号就已经决定了性别，所以函数依赖（学号，姓名）决定性别就是部分依赖。</p>
+<h3 id="传递函数依赖">传递函数依赖</h3>
+<p>关系 R 中，X、Y、Z是属性集，X 决定 Y的值（X-&gt;Y），Y 不决定 X，Y 决定 Z 的值（Y-&gt;Z），则有 X 决定 Z（X-&gt;Z）称 Z 传递函数依赖于 X。<br>
+设一个图书的关系模式 BOOKS</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">BNO</th>
+<th style="text-align:left">PNAME</th>
+<th style="text-align:left">PADDRESS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">图书编号</td>
+<td style="text-align:left">出版社名</td>
+<td style="text-align:left">出版社地址</td>
+</tr>
+</tbody>
+</table>
+<p>在此关系中，一个图书编号对应一个出版社名，但一个出版社可能对应多个图书编号（一个出版社可出版多本图书），一个出版社只有一个地址，所以一个图书编号对应一个出版社地址，则有出版社地址对图书编号的传递函数依赖。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%8C%83%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B">范式有哪些？</a>
+<ul>
+<li><a href="#1nf-%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F">1NF 第一范式</a></li>
+<li><a href="#2nf-%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F">2NF 第二范式</a></li>
+<li><a href="#3nf-%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F">3NF 第三范式</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96">函数依赖</a>
+<ul>
+<li><a href="#%E5%AE%8C%E5%85%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96">完全函数依赖</a></li>
+<li><a href="#%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96">部分函数依赖</a></li>
+<li><a href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96">传递函数依赖</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://kangaro0o.github.io//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'S0EEJcJBfJYwFrxzaftrwGay-gzGzoHsz',
+    appKey: 'ORcgXh6yyLPwN5ajJeGvpR5g',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

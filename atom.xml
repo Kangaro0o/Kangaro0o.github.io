@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://kangaro0o.github.io/</id>
+    <title>天机阁</title>
+    <updated>2022-07-25T09:16:28.999Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://kangaro0o.github.io/"/>
+    <link rel="self" href="https://kangaro0o.github.io/atom.xml"/>
+    <subtitle>卑以自牧 不欺于心</subtitle>
+    <logo>https://kangaro0o.github.io/images/avatar.png</logo>
+    <icon>https://kangaro0o.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, 天机阁</rights>
+    <entry>
+        <title type="html"><![CDATA[206. 反转链表]]></title>
+        <id>https://kangaro0o.github.io/206-fan-zhuan-lian-biao/</id>
+        <link href="https://kangaro0o.github.io/206-fan-zhuan-lian-biao/">
+        </link>
+        <updated>2022-07-25T07:48:46.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/reverse-linked-list/">题目</a></h2>
+<p>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/reverse-linked-list/">题目</a></h2>
+<p>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[剑指 Offer 54. 二叉搜索树的第k大节点]]></title>
+        <id>https://kangaro0o.github.io/jian-zhi-offer-54-er-cha-sou-suo-shu-de-di-k-da-jie-dian/</id>
+        <link href="https://kangaro0o.github.io/jian-zhi-offer-54-er-cha-sou-suo-shu-de-di-k-da-jie-dian/">
+        </link>
+        <updated>2022-07-21T07:08:39.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">题目</a></h2>
+<p>给定一棵二叉搜索树，请找出其中第 k 大的节点的值。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">题目</a></h2>
+<p>给定一棵二叉搜索树，请找出其中第 k 大的节点的值。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[自动化测试分类]]></title>
+        <id>https://kangaro0o.github.io/zi-dong-hua-ce-shi-fen-lei/</id>
+        <link href="https://kangaro0o.github.io/zi-dong-hua-ce-shi-fen-lei/">
+        </link>
+        <updated>2022-07-16T07:50:28.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[96. 不同的二叉搜索树]]></title>
+        <id>https://kangaro0o.github.io/96-bu-tong-de-er-cha-sou-suo-shu/</id>
+        <link href="https://kangaro0o.github.io/96-bu-tong-de-er-cha-sou-suo-shu/">
+        </link>
+        <updated>2022-07-16T04:58:29.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees/">题目</a></h2>
+<p>给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。</p>
+<p>难度：🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees/">题目</a></h2>
+<p>给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。</p>
+<p>难度：🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[95. 不同的二叉搜索树 II]]></title>
+        <id>https://kangaro0o.github.io/95-bu-tong-de-er-cha-sou-suo-shu-ii/</id>
+        <link href="https://kangaro0o.github.io/95-bu-tong-de-er-cha-sou-suo-shu-ii/">
+        </link>
+        <updated>2022-07-16T04:34:35.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">题目</a></h2>
+<p>给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。</p>
+<p>难度：🌟🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">题目</a></h2>
+<p>给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。</p>
+<p>难度：🌟🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[146. LRU 缓存]]></title>
+        <id>https://kangaro0o.github.io/146-lru-huan-cun/</id>
+        <link href="https://kangaro0o.github.io/146-lru-huan-cun/">
+        </link>
+        <updated>2022-07-14T11:22:12.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MVCC 多版本并发控制]]></title>
+        <id>https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/</id>
+        <link href="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/">
+        </link>
+        <updated>2022-07-14T05:32:24.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[735. 行星碰撞]]></title>
+        <id>https://kangaro0o.github.io/735-xing-xing-peng-zhuang/</id>
+        <link href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/">
+        </link>
+        <updated>2022-07-13T16:24:51.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/asteroid-collision/">题目</a></h2>
+<p>给定一个整数数组 asteroids，表示在同一行的行星。</p>
+<p>对于数组中的每一个元素，其绝对值表示行星的大小，正负表示行星的移动方向（正表示向右移动，负表示向左移动）。每一颗行星以相同的速度移动。</p>
+<p>找出碰撞后剩下的所有行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
+<p>难度：🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/asteroid-collision/">题目</a></h2>
+<p>给定一个整数数组 asteroids，表示在同一行的行星。</p>
+<p>对于数组中的每一个元素，其绝对值表示行星的大小，正负表示行星的移动方向（正表示向右移动，负表示向左移动）。每一颗行星以相同的速度移动。</p>
+<p>找出碰撞后剩下的所有行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
+<p>难度：🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[事务的隔离级别]]></title>
+        <id>https://kangaro0o.github.io/shi-wu-de-ge-chi-ji-bie/</id>
+        <link href="https://kangaro0o.github.io/shi-wu-de-ge-chi-ji-bie/">
+        </link>
+        <updated>2022-07-13T08:59:06.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[并发事务带来的问题]]></title>
+        <id>https://kangaro0o.github.io/bing-fa-shi-wu-dai-lai-de-wen-ti/</id>
+        <link href="https://kangaro0o.github.io/bing-fa-shi-wu-dai-lai-de-wen-ti/">
+        </link>
+        <updated>2022-07-13T08:20:12.000Z</updated>
+    </entry>
+</feed>
