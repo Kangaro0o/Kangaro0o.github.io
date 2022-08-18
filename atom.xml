@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://kangaro0o.github.io/</id>
+    <title>天机阁</title>
+    <updated>2022-08-18T08:59:32.490Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://kangaro0o.github.io/"/>
+    <link rel="self" href="https://kangaro0o.github.io/atom.xml"/>
+    <subtitle>卑以自牧 不欺于心</subtitle>
+    <logo>https://kangaro0o.github.io/images/avatar.png</logo>
+    <icon>https://kangaro0o.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, 天机阁</rights>
+    <entry>
+        <title type="html"><![CDATA[剑指 Offer 04. 二维数组中的查找]]></title>
+        <id>https://kangaro0o.github.io/jian-zhi-offer-04-er-wei-shu-zu-zhong-de-cha-zhao/</id>
+        <link href="https://kangaro0o.github.io/jian-zhi-offer-04-er-wei-shu-zu-zhong-de-cha-zhao/">
+        </link>
+        <updated>2022-08-18T04:02:30.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">题目</a></h2>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>难度：🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">题目</a></h2>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>难度：🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LintCode928. 最多有两个不同字符的最长子串]]></title>
+        <id>https://kangaro0o.github.io/lintcode928-zui-duo-you-liang-ge-bu-tong-zi-fu-de-zui-chang-zi-chuan/</id>
+        <link href="https://kangaro0o.github.io/lintcode928-zui-duo-you-liang-ge-bu-tong-zi-fu-de-zui-chang-zi-chuan/">
+        </link>
+        <updated>2022-08-16T09:48:46.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://www.lintcode.com/problem/928">题目</a></h2>
+<p>给定一个字符串，找出最长子串TT的长度，它最多包含2个不同的字符。</p>
+<p>难度：🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://www.lintcode.com/problem/928">题目</a></h2>
+<p>给定一个字符串，找出最长子串TT的长度，它最多包含2个不同的字符。</p>
+<p>难度：🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[124. 二叉树中的最大路径和]]></title>
+        <id>https://kangaro0o.github.io/124-er-cha-shu-zhong-de-zui-da-lu-jing-he/</id>
+        <link href="https://kangaro0o.github.io/124-er-cha-shu-zhong-de-zui-da-lu-jing-he/">
+        </link>
+        <updated>2022-08-16T08:08:20.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/">题目</a></h2>
+<p><strong>路径</strong> 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 至多出现一次 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。</p>
+<p>路径和 是路径中各节点值的总和。</p>
+<p>给你一个二叉树的根节点 root ，返回其 <strong>最大路径和</strong> 。</p>
+<p>难度：🌟🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/">题目</a></h2>
+<p><strong>路径</strong> 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 至多出现一次 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。</p>
+<p>路径和 是路径中各节点值的总和。</p>
+<p>给你一个二叉树的根节点 root ，返回其 <strong>最大路径和</strong> 。</p>
+<p>难度：🌟🌟🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[783. 二叉搜索树节点最小距离]]></title>
+        <id>https://kangaro0o.github.io/783-er-cha-sou-suo-shu-jie-dian-zui-xiao-ju-chi/</id>
+        <link href="https://kangaro0o.github.io/783-er-cha-sou-suo-shu-jie-dian-zui-xiao-ju-chi/">
+        </link>
+        <updated>2022-08-12T06:35:47.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/minimum-distance-between-bst-nodes/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/minimum-distance-between-bst-nodes/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[530. 二叉搜索树的最小绝对差]]></title>
+        <id>https://kangaro0o.github.io/530-er-cha-sou-suo-shu-de-zui-xiao-jue-dui-chai/</id>
+        <link href="https://kangaro0o.github.io/530-er-cha-sou-suo-shu-de-zui-xiao-jue-dui-chai/">
+        </link>
+        <updated>2022-08-12T06:19:09.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[538. 把二叉搜索树转换为累加树]]></title>
+        <id>https://kangaro0o.github.io/538-ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-shu/</id>
+        <link href="https://kangaro0o.github.io/538-ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-shu/">
+        </link>
+        <updated>2022-08-12T03:40:51.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/convert-bst-to-greater-tree/">题目</a></h2>
+<p>给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/convert-bst-to-greater-tree/">题目</a></h2>
+<p>给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[230. 二叉搜索树中第K小的元素]]></title>
+        <id>https://kangaro0o.github.io/230-er-cha-sou-suo-shu-zhong-di-k-xiao-de-yuan-su/</id>
+        <link href="https://kangaro0o.github.io/230-er-cha-sou-suo-shu-zhong-di-k-xiao-de-yuan-su/">
+        </link>
+        <updated>2022-08-11T10:12:11.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[701. 二叉搜索树中的插入操作]]></title>
+        <id>https://kangaro0o.github.io/701-er-cha-sou-suo-shu-zhong-de-cha-ru-cao-zuo/</id>
+        <link href="https://kangaro0o.github.io/701-er-cha-sou-suo-shu-zhong-de-cha-ru-cao-zuo/">
+        </link>
+        <updated>2022-08-11T09:39:51.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。</p>
+<p>注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 <strong>任意有效的结果</strong> 。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。</p>
+<p>注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 <strong>任意有效的结果</strong> 。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[700. 二叉搜索树中的搜索]]></title>
+        <id>https://kangaro0o.github.io/700-er-cha-sou-suo-shu-zhong-de-sou-suo/</id>
+        <link href="https://kangaro0o.github.io/700-er-cha-sou-suo-shu-zhong-de-sou-suo/">
+        </link>
+        <updated>2022-08-11T08:28:34.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和一个整数值 val。</p>
+<p>你需要在 BST 中找到节点值等于 val 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 null 。</p>
+<p>难度：🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和一个整数值 val。</p>
+<p>你需要在 BST 中找到节点值等于 val 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 null 。</p>
+<p>难度：🌟🌟</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[450. 删除二叉搜索树中的节点]]></title>
+        <id>https://kangaro0o.github.io/450-shan-chu-er-cha-sou-suo-shu-zhong-de-jie-dian/</id>
+        <link href="https://kangaro0o.github.io/450-shan-chu-er-cha-sou-suo-shu-zhong-de-jie-dian/">
+        </link>
+        <updated>2022-08-11T08:17:12.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/delete-node-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
+<p>一般来说，删除节点可分为两个步骤：</p>
+<ol>
+<li>首先找到需要删除的节点；</li>
+<li>如果找到了，删除它。</li>
+</ol>
+<p>难度：🌟🌟🌟🌟</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="题目"><a href="https://leetcode.cn/problems/delete-node-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
+<p>一般来说，删除节点可分为两个步骤：</p>
+<ol>
+<li>首先找到需要删除的节点；</li>
+<li>如果找到了，删除它。</li>
+</ol>
+<p>难度：🌟🌟🌟🌟</p>
+]]></content>
+    </entry>
+</feed>

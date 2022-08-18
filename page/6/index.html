@@ -1,0 +1,330 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/145-er-cha-shu-de-hou-xu-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          145. 二叉树的后序遍历
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">题目</a></h2>
+<p>给你一棵二叉树的根节点 root ，返回其节点值的 <strong>后序遍历</strong> 。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/145-er-cha-shu-de-hou-xu-bian-li/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/341-bian-ping-hua-qian-tao-lie-biao-die-dai-qi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          341. 扁平化嵌套列表迭代器
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/flatten-nested-list-iterator/">题目</a></h2>
+<p>给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。</p>
+<p>实现扁平迭代器类 NestedIterator ：</p>
+<ul>
+<li>NestedIterator(List<NestedInteger> nestedList) 用嵌套列表 nestedList 初始化迭代器。</li>
+<li>int next() 返回嵌套列表的下一个整数。</li>
+<li>boolean hasNext() 如果仍然存在待迭代的整数，返回 true ；否则，返回 false 。</li>
+</ul>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/341-bian-ping-hua-qian-tao-lie-biao-die-dai-qi/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/606-gen-ju-er-cha-shu-chuang-jian-zi-fu-chuan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          606. 根据二叉树创建字符串
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/construct-string-from-binary-tree/">题目</a></h2>
+<p>给你二叉树的根节点 root ，请你采用前序遍历的方式，将二叉树转化为一个由括号和整数组成的字符串，返回构造出的字符串。</p>
+<p>空节点使用一对空括号对 &quot;()&quot; 表示，转化后需要省略所有不影响字符串与原始二叉树之间的一对一映射关系的空括号对。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/606-gen-ju-er-cha-shu-chuang-jian-zi-fu-chuan/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/defer-de-shi-yong-ji-qi-yuan-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          defer 的使用及其原理
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        前言
+defer 语句用于延迟函数的调用，每次 defer 都会把一个函数压入栈中，函数返回前再把延迟的函数取出并执行。
+通常地，我们把创建 defer 的函数称为主函数，defer 语句后面的函数称为延迟函数。
+延迟函数可能有输入参数，这...
+      </div>
+      <a href="https://kangaro0o.github.io/defer-de-shi-yong-ji-qi-yuan-li/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/YnJsGaLqP/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          971. 翻转二叉树以匹配先序遍历
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/">题目</a></h2>
+<p>给你一棵二叉树的根节点 root ，树中有 n 个节点，每个节点都有一个不同于其他节点且处于 1 到 n 之间的值。</p>
+<p>另给你一个由 n 个值组成的行程序列 voyage ，表示 预期 的二叉树 先序遍历 结果。</p>
+<p>通过交换节点的左右子树，可以 翻转 该二叉树中的任意节点。例，翻转节点 1 的效果如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657279267861.jpeg#center" alt="" loading="lazy"></p>
+<p>请翻转 最少 的树中节点，使二叉树的 先序遍历 与预期的遍历行程 voyage 相匹配 。</p>
+<p>如果可以，则返回 翻转的 所有节点的值的列表。你可以按任何顺序返回答案。如果不能，则返回列表 [-1]。</p>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/YnJsGaLqP/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/qvzz2da8Q/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          226. 翻转二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/invert-binary-tree/">题目</a></h2>
+<p>给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。</p>
+<p>难度：🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/qvzz2da8Q/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://kangaro0o.github.io//post-images/qvzz2da8Q.jpeg" alt="226. 翻转二叉树">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/BiW6kmm9x/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang的map数据结构
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="map-数据结构">map 数据结构</h2>
+<p>Golang 的 <code>map</code> 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 <code>bucket</code>，而每个 bucket 就保存了 map 中的一个或一组键值对。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/BiW6kmm9x/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/iOO1qsZmI/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          116. 填充每个节点的下一个右侧节点指针
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id=""><a href=""></a></h2>
+<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<pre><code class="language-go">struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+</code></pre>
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/iOO1qsZmI/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/WJWWJzzg3/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang的chan数据结构
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-07</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>channel 是 Golang 在语言层面提供的 goroutine(协程)间的通信方式，比 Unix 管道更易用也更轻便。channel 主要用于进程内各 goroutine 间通信，如果需要跨进程通信，建议使用分布式系统的方法来解决。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/WJWWJzzg3/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/WfqRpOrh-/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          114. 二叉树展开为链表
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">题目</a></h2>
+<p>给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
+<ul>
+<li>展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。</li>
+<li>展开后的单链表应该与二叉树 先序遍历 顺序相同。</li>
+</ul>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/WfqRpOrh-/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://kangaro0o.github.io/page/5/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://kangaro0o.github.io/page/7/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+
+</html>

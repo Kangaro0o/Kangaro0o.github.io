@@ -1,0 +1,332 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        LeetCode
+      </h1>
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/YnJsGaLqP/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          971. 翻转二叉树以匹配先序遍历
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/">题目</a></h2>
+<p>给你一棵二叉树的根节点 root ，树中有 n 个节点，每个节点都有一个不同于其他节点且处于 1 到 n 之间的值。</p>
+<p>另给你一个由 n 个值组成的行程序列 voyage ，表示 预期 的二叉树 先序遍历 结果。</p>
+<p>通过交换节点的左右子树，可以 翻转 该二叉树中的任意节点。例，翻转节点 1 的效果如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657279267861.jpeg#center" alt="" loading="lazy"></p>
+<p>请翻转 最少 的树中节点，使二叉树的 先序遍历 与预期的遍历行程 voyage 相匹配 。</p>
+<p>如果可以，则返回 翻转的 所有节点的值的列表。你可以按任何顺序返回答案。如果不能，则返回列表 [-1]。</p>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/YnJsGaLqP/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/qvzz2da8Q/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          226. 翻转二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/invert-binary-tree/">题目</a></h2>
+<p>给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。</p>
+<p>难度：🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/qvzz2da8Q/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://kangaro0o.github.io//post-images/qvzz2da8Q.jpeg" alt="226. 翻转二叉树">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/iOO1qsZmI/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          116. 填充每个节点的下一个右侧节点指针
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id=""><a href=""></a></h2>
+<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<pre><code class="language-go">struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+</code></pre>
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/iOO1qsZmI/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/WfqRpOrh-/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          114. 二叉树展开为链表
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">题目</a></h2>
+<p>给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
+<ul>
+<li>展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。</li>
+<li>展开后的单链表应该与二叉树 先序遍历 顺序相同。</li>
+</ul>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/WfqRpOrh-/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/qZfyBx7Xy/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          111. 二叉树的最小深度
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/">题目</a></h2>
+<p>给定一个二叉树，找出其最小深度。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
+<p>说明：叶子节点是指没有子节点的节点。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/qZfyBx7Xy/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/fHPD1TaEr/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          107. 二叉树的层序遍历 II
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/binary-tree-level-order-traversal-ii/">题目</a></h2>
+<p>给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/fHPD1TaEr/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/EzfmQ09vy/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          654. 最大二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/maximum-binary-tree/">题目</a></h2>
+<p>给定一个不重复的整数数组 nums 。 最大二叉树 可以用下面的算法从 nums 递归地构建:</p>
+<p>创建一个根节点，其值为 nums 中的最大值。<br>
+递归地在最大值 左边 的 子数组前缀上 构建左子树。<br>
+递归地在最大值 右边 的 子数组后缀上 构建右子树。<br>
+返回 nums 构建的 最大二叉树 。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/EzfmQ09vy/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/y0UFEnsTD/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          106. 从中序与后序遍历序列构造二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">题目</a></h2>
+<p>给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 二叉树 。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/y0UFEnsTD/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/Jb1z5R0g3/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          105. 从前序与中序遍历序列构造二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">题目</a></h2>
+<p>给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/Jb1z5R0g3/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/OiDfpt1CW/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          543. 二叉树的直径
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-06</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/diameter-of-binary-tree/">题目</a></h2>
+<p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/OiDfpt1CW/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://kangaro0o.github.io/vzyk8T2jQ/page/4/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://kangaro0o.github.io/vzyk8T2jQ/page/6/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+</html>

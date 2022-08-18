@@ -1,0 +1,326 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/shu-ju-ku-fan-shi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          数据库范式
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="范式有哪些">范式有哪些？</h2>
+<h3 id="1nf-第一范式">1NF 第一范式</h3>
+<p>属性（即表中字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。<br>
+<strong>1NF 是所有关系型数据库的最基本要求</strong>，也就是说关系型数据库中创建的表一定满足第一范式。</p>
+<h3 id="2nf-第二范式">2NF 第二范式</h3>
+<p>2NF 在 1NF 的基础上，消除了非主属性对于码的部分函数依赖。</p>
+<h3 id="3nf-第三范式">3NF 第三范式</h3>
+<p>3NF 在 2NF 的基础上，消除了非主属性对于码的传递函数依赖。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/shu-ju-ku-fan-shi/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/jin-cheng-xian-cheng-xie-cheng-de-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          进程、线程、协程的区别
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="什么是进程">什么是进程？</h2>
+<p>进程是操作系统进行资源分配的基本单位，每个进程都有自己的独立内存空间。<br>
+由于进程比较重量，占据独立的内存，所以上下文进程间的切换开销（栈、寄存器、虚拟内存、文件句柄等）比较大，但相对比较稳定安全。</p>
+<h2 id="什么是线程">什么是线程？</h2>
+<p>线程又叫轻量级进程，是进程的一个实体，是处理器任务调度和执行的基本单位。<br>
+它是比进程更小的能独立运行的基本单位。<br>
+线程自己不拥有资源，但它可与同属一个进程的线程共享进程所拥有的全部资源。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/jin-cheng-xian-cheng-xie-cheng-de-qu-bie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang常见控制结构Mutex
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 <code>Lock()</code> 和 <code>Unlock()</code> 两个方法分别用于加锁和解锁。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/590-n-cha-shu-de-hou-xu-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          590. N 叉树的后序遍历
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/n-ary-tree-postorder-traversal/">题目</a></h2>
+<p>给定一个 n 叉树的根节点  root ，返回 其节点值的 **后序遍历 ** 。</p>
+<p>n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 null 分隔（请参见示例）。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/590-n-cha-shu-de-hou-xu-bian-li/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/589-n-cha-shu-de-qian-xu-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          589. N 叉树的前序遍历
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/n-ary-tree-preorder-traversal/">题目</a></h2>
+<p>给定一个 n 叉树的根节点  root ，返回 其节点值的 <strong>前序遍历</strong> 。</p>
+<p>n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 null 分隔（请参见示例）。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/589-n-cha-shu-de-qian-xu-bian-li/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/559-n-cha-shu-de-zui-da-shen-du/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          559. N 叉树的最大深度
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/">题目</a></h2>
+<p>给定一个 N 叉树，找到其最大深度。</p>
+<p>最大深度是指从根节点到最远叶子节点的最长路径上的节点总数。</p>
+<p>N 叉树输入按层序遍历序列化表示，每组子节点由空值分隔（请参见示例）。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/559-n-cha-shu-de-zui-da-shen-du/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/501-er-cha-sou-suo-shu-zhong-de-zhong-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          501. 二叉搜索树中的众数
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/find-mode-in-binary-search-tree/">题目</a></h2>
+<p>给你一个含重复值的二叉搜索树（BST）的根节点 root ，找出并返回 BST 中的所有 众数（即，出现频率最高的元素）。</p>
+<p>如果树中有不止一个众数，可以按 任意顺序 返回。</p>
+<p>假定 BST 满足如下定义：</p>
+<ul>
+<li>结点左子树中所含节点的值 小于等于 当前节点的值</li>
+<li>结点右子树中所含节点的值 大于等于 当前节点的值</li>
+<li>左子树和右子树都是二叉搜索树</li>
+</ul>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/501-er-cha-sou-suo-shu-zhong-de-zhong-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/297-er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          297. 二叉树的序列化与反序列化
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/">题目</a></h2>
+<p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
+<p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
+<p>难度：🌟🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/297-er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          236. 二叉树的最近公共祖先
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">题目</a></h2>
+<p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/222-wan-quan-er-cha-shu-de-jie-dian-ge-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          222. 完全二叉树的节点个数
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。</p>
+<p>完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2<sup>h</sup> 个节点。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/222-wan-quan-er-cha-shu-de-jie-dian-ge-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://kangaro0o.github.io/page/4/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://kangaro0o.github.io/page/6/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+
+</html>

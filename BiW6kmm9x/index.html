@@ -1,0 +1,420 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Golang的map数据结构 - 天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Golang的map数据结构 - 天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="map 数据结构
+Golang 的 map 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 bucket，而每个 bucket 就保存了 map 中的一个或一组键值对。
+
+map 数据结构由 runtime/map.go:h..." />
+  <meta property="og:title" content="Golang的map数据结构 - 天机阁">
+  <meta property="og:description" content="map 数据结构
+Golang 的 map 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 bucket，而每个 bucket 就保存了 map 中的一个或一组键值对。
+
+map 数据结构由 runtime/map.go:h..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://kangaro0o.github.io/BiW6kmm9x/" />
+  <meta property="og:image" content="https://kangaro0o.github.io//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Golang的map数据结构 - 天机阁">
+  <meta name="twitter:description" content="map 数据结构
+Golang 的 map 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 bucket，而每个 bucket 就保存了 map 中的一个或一组键值对。
+
+map 数据结构由 runtime/map.go:h...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kangaro0o.github.io/BiW6kmm9x/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://kangaro0o.github.io//media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://kangaro0o.github.io/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      天机阁
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Golang的map数据结构
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-07-08 · 7 min read</div>
+          
+            <a href="https://kangaro0o.github.io/npy48thXF/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Go
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="map-数据结构">map 数据结构</h2>
+<p>Golang 的 <code>map</code> 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 <code>bucket</code>，而每个 bucket 就保存了 map 中的一个或一组键值对。</p>
+<!-- more -->
+<p>map 数据结构由 <code>runtime/map.go:hmap</code> 定义：</p>
+<pre><code class="language-go">type hmap struct {
+    count     int // 当前保存的元素个数
+    ...
+    B         uint8  // 指示bucket数组的大小
+    ...
+    buckets   unsafe.Pointer // bucket数组指针，数组的大小为2^B
+    ...
+}
+</code></pre>
+<p>下图展示一个拥有4个 bucket 的 map：<br>
+<img src="https://kangaro0o.github.io//post-images/1657260981149.png" alt="" loading="lazy"><br>
+上图例子中，<code>hmap.B=2</code>，因此 <code>hmap.buckets</code> 长度是 2<sup>B</sup> 等于4。元素经过哈希运算后会落到某个 bucket 中进行存储。</p>
+<h3 id="bucket-数据结构">bucket 数据结构</h3>
+<p>bucket 数据结构由 <code>runtime/map.go:bmap</code> 定义：</p>
+<pre><code class="language-go">type bmap struct {
+    tophash [8]uint8 //存储哈希值的高8位
+    data    byte[1]  //key value数据:key/key/key/.../value/value/value...
+    overflow *bmap   //溢出bucket的地址
+}
+</code></pre>
+<p>每个 bucket 可以存储8个键值对。</p>
+<ul>
+<li>tophash 是个长度为8的数组，哈希值相同的键（准确的说是哈希值低位相同的键）存入当前 bucket 时会将哈希值的高位存储在该数组中，以方便后续匹配；</li>
+<li>data 存储的是 key-value 数据，存放顺序是 key/key/key/...value/value/value，如此存放是为了节省字节对齐带来的空间浪费；</li>
+<li>overflow 指针指向的是下一个 bucket，据此将所有冲突的连接起来。</li>
+</ul>
+<p>下图展示 bucket 存放8个 key-value 对：<br>
+<img src="https://kangaro0o.github.io//post-images/1657262621264.png" alt="" loading="lazy"></p>
+<h2 id="哈希冲突">哈希冲突</h2>
+<p>当有两个或两个以上数量的键被哈希到了同一个 bucket 时，我们称这些键发生了冲突。<br>
+Go 使用 <strong>链地址法</strong> 来解决键冲突。<br>
+由于每个 bucket 可以存放8个键值对，所以同一个 bucket 存放超过9个键值对时就会再创建一个键值对，用类似链表的方式将 bucket 连接起来。</p>
+<p>下图展示产生冲突后的 map：<br>
+<img src="https://kangaro0o.github.io//post-images/1657262828516.png" alt="" loading="lazy"><br>
+bucket 数据结构指示下一个 bucket 的指针称为 overflow bucket，意为当前 bucket 盛不下而溢出的部分。事实上哈希冲突并不是好事情，它降低了存储效率，好的哈希算法可以保证哈希值的随机性，但冲突过多也是要控制的。</p>
+<h2 id="负载因子">负载因子</h2>
+<p>负载因子是用来衡量哈希冲突严重程度的指标，公式为：</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">负</mi><mi mathvariant="normal">载</mi><mi mathvariant="normal">因</mi><mi mathvariant="normal">子</mi></mrow><annotation encoding="application/x-tex">负载因子</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">负</span><span class="mord cjk_fallback">载</span><span class="mord cjk_fallback">因</span><span class="mord cjk_fallback">子</span></span></span></span> = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi mathvariant="normal">键</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">量</mi></mrow><mrow><mi>b</mi><mi>u</mi><mi>c</mi><mi>k</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">量</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{键数量}{bucket 数量}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.739em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.394em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord cjk_fallback mtight">数</span><span class="mord cjk_fallback mtight">量</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">键</span><span class="mord cjk_fallback mtight">数</span><span class="mord cjk_fallback mtight">量</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</blockquote>
+<p>例如对于一个 bucket 数量为4，包含4个键值对的哈希表来说，这个哈希表的负载因子为1。<br>
+哈希表需要将负载因子控制在合适的大小，超过其阈值需要进行 <code>rehash</code>，即重新组织键值对：</p>
+<ul>
+<li>负载因子过小，说明空间利用率低</li>
+<li>负载因子过大，说明冲突严重，存储效率低</li>
+</ul>
+<p>每个哈希表的实现对负载因子容忍程度不同，比如 Redis 实现中负载因子大于1时就会触发 <code>rehash</code>，而 Go 则在负载因子达到6.5时才会触发 <code>rehash</code>，因为 Redis 的每个 bucket 只能存一个键值对，而 Go 的 bucket 可能存8个键值对，所以 Go 可以容忍更高的负载因子。</p>
+<h2 id="扩容">扩容</h2>
+<h3 id="扩容的前提条件">扩容的前提条件</h3>
+<p>为了保证访问效率，当新元素将要添加进 map 时，都会检查是否需要扩容，扩容实际上是以空间换时间的手段。触发扩容的条件有两个（满足其一）：</p>
+<ol>
+<li>负载因子 &gt; 6.5 时，即平均每个 bucket 存储的键值对达到6.5个；</li>
+<li>overflow 数量 &gt; 2<sup>15</sup>时，即 overflow 数量超过32768时；</li>
+</ol>
+<h3 id="增量扩容">增量扩容</h3>
+<p>当负载因子过大时，就新建一个 bucket，新的 bucket 长度是原来的2倍，然后旧 bucket 搬迁到新的 bucket。考虑到如果 map 存储了数以亿计的 key-value，一次性搬迁会造成比较大的延时，Go 采用逐步搬迁策略，即每次访问 map 时都会触发一次搬迁，每次搬迁2个键值对。</p>
+<p>下次展示了包含一个 bucket 满载的 map（省略了value区域）:<br>
+<img src="https://kangaro0o.github.io//post-images/1657264829039.png" alt="" loading="lazy"><br>
+当前 map 存储了7个键值对，只有一个 bucket。<br>
+此时负载因子为7。<br>
+再次插入数据时会触发扩容操作，扩容之后再将新插入键写入新的 bucket。</p>
+<p>当第8个键值对插入时，将会触发扩容，扩容后示意图如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657264957179.png" alt="" loading="lazy"></p>
+<p>hmap 数据结构中 oldbuckets 指针指向原 bucket，而 buckets 指向了新申请的 bucket。<br>
+新的键值对被插入新的 bucket 中。<br>
+后续对 map 的访问操作会触发迁移，将 oldbuckets 中的键值对逐步的搬迁出来，当 oldbuckets 中的键值对全部搬迁完毕后，删除 oldbuckets。</p>
+<p>搬迁完成后的示意图如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657265257087.png" alt="" loading="lazy"></p>
+<p>数据搬迁过程中原 bucket 中的键值对将存在于新 bucket 的前面，新插入的键值对将存在于新 bucket 的后面。</p>
+<h3 id="等量扩容">等量扩容</h3>
+<p>所谓等量扩容，实际上并不是扩大容量，而是 buckets 数量不变，重新做一遍类似增量扩容的搬迁动作，把松散的键值对重新排列一次，以使 bucket 的使用率更高，进而保证更快的存取。<br>
+在极端场景下，比如不断的增删键值对，而键值对正好集中在一小部分的 bucket，这样就会造成 overflow 的 bucket 数量过多，但负载因子又不高，从而无法执行增量搬迁的过程。</p>
+<p>如下图所示：<br>
+<img src="https://kangaro0o.github.io//post-images/1657265506176.png" alt="" loading="lazy"></p>
+<p>由上图可知，overflow 的 bucket 中大部分是空的，访问效率会很差，此时进行一次等量扩容，即 buckets 数量不变，经过重新组织后 overflow 的 bucket 数量会减少，既节省了空间又会提高了访问效率。</p>
+<h2 id="map-的查找过程">map 的查找过程</h2>
+<p>查找过程如下：</p>
+<ol>
+<li>根据 <code>key</code> 值计算出哈希值；</li>
+<li>取哈希值低位与 <code>hmap.B</code> 取模确定 <code>bucket</code> 位置；</li>
+<li>取哈希值高位在 <code>tophash</code> 数组中查询；
+<ol>
+<li>如果 <code>tophash[i]</code> 中存储值和哈希值高位相等，则去找该 <code>bucket</code> 中的 <code>key</code> 值进行比较；</li>
+<li>如果 <code>bucket</code> 中没有找到，则继续从下个 <code>overflow</code> 的 <code>bucket</code> 中查找；</li>
+<li>如果当前出于搬迁过程，则优先从 <code>oldbuckets</code> 查找。</li>
+</ol>
+</li>
+</ol>
+<h2 id="map-的插入过程">map 的插入过程</h2>
+<p>新元素插入过程如下：</p>
+<ol>
+<li>根据 <code>key</code> 值计算出哈希值；</li>
+<li>取哈希值低位与 <code>hmap.B</code> 取模确定 bucket 位置；</li>
+<li>查找该 <code>key</code> 是否已经存在，如果存在则直接更新值；</li>
+<li>如果没找到该 <code>key</code>，就将 <code>key</code> 插入。</li>
+</ol>
+<blockquote>
+<p>本文参考 https://www.bookstack.cn/read/GoExpertProgramming/chapter01-1.3-map.md</p>
+</blockquote>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#map-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">map 数据结构</a>
+<ul>
+<li><a href="#bucket-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">bucket 数据结构</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81">哈希冲突</a></li>
+<li><a href="#%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90">负载因子</a></li>
+<li><a href="#%E6%89%A9%E5%AE%B9">扩容</a>
+<ul>
+<li><a href="#%E6%89%A9%E5%AE%B9%E7%9A%84%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6">扩容的前提条件</a></li>
+<li><a href="#%E5%A2%9E%E9%87%8F%E6%89%A9%E5%AE%B9">增量扩容</a></li>
+<li><a href="#%E7%AD%89%E9%87%8F%E6%89%A9%E5%AE%B9">等量扩容</a></li>
+</ul>
+</li>
+<li><a href="#map-%E7%9A%84%E6%9F%A5%E6%89%BE%E8%BF%87%E7%A8%8B">map 的查找过程</a></li>
+<li><a href="#map-%E7%9A%84%E6%8F%92%E5%85%A5%E8%BF%87%E7%A8%8B">map 的插入过程</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://kangaro0o.github.io//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'S0EEJcJBfJYwFrxzaftrwGay-gzGzoHsz',
+    appKey: 'ORcgXh6yyLPwN5ajJeGvpR5g',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

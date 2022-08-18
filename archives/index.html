@@ -1,0 +1,526 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <div class="py-8 shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/jian-zhi-offer-04-er-wei-shu-zu-zhong-de-cha-zhao/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                剑指 Offer 04. 二维数组中的查找
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/lintcode928-zui-duo-you-liang-ge-bu-tong-zi-fu-de-zui-chang-zi-chuan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                LintCode928. 最多有两个不同字符的最长子串
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/124-er-cha-shu-zhong-de-zui-da-lu-jing-he/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                124. 二叉树中的最大路径和
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/783-er-cha-sou-suo-shu-jie-dian-zui-xiao-ju-chi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                783. 二叉搜索树节点最小距离
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/530-er-cha-sou-suo-shu-de-zui-xiao-jue-dui-chai/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                530. 二叉搜索树的最小绝对差
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/538-ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                538. 把二叉搜索树转换为累加树
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/230-er-cha-sou-suo-shu-zhong-di-k-xiao-de-yuan-su/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                230. 二叉搜索树中第K小的元素
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/701-er-cha-sou-suo-shu-zhong-de-cha-ru-cao-zuo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                701. 二叉搜索树中的插入操作
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/700-er-cha-sou-suo-shu-zhong-de-sou-suo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                700. 二叉搜索树中的搜索
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/450-shan-chu-er-cha-sou-suo-shu-zhong-de-jie-dian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                450. 删除二叉搜索树中的节点
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/4-xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                4. 寻找两个正序数组的中位数
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/43-zi-fu-chuan-xiang-cheng/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                43. 字符串相乘
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/415-zi-fu-chuan-xiang-jia/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                415. 字符串相加
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/6-z-zi-xing-bian-huan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                6. Z 字形变换
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/98-yan-zheng-er-cha-sou-suo-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                98. 验证二叉搜索树
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/215-shu-zu-zhong-de-di-k-ge-zui-da-yuan-su/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                215. 数组中的第K个最大元素
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/56-he-bing-qu-jian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                56. 合并区间
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/148-pai-xu-lian-biao/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                148. 排序链表
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/498-dui-jiao-xian-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                498. 对角线遍历
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/1-liang-shu-zhi-he/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                1. 两数之和
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/200-dao-yu-shu-liang/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                200. 岛屿数量
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/jin-cheng-jian-you-na-xie-tong-xin-fang-shi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                进程间有哪些通信方式？
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/liang-ge-xie-cheng-jiao-ti-da-yin-0-100/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                两个协程交替打印0-100
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/31-xia-yi-ge-pai-lie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                31. 下一个排列
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/206-fan-zhuan-lian-biao/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                206. 反转链表
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/jian-zhi-offer-54-er-cha-sou-suo-shu-de-di-k-da-jie-dian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                剑指 Offer 54. 二叉搜索树的第k大节点
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/zi-dong-hua-ce-shi-fen-lei/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                自动化测试分类
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/96-bu-tong-de-er-cha-sou-suo-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                96. 不同的二叉搜索树
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/95-bu-tong-de-er-cha-sou-suo-shu-ii/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                95. 不同的二叉搜索树 II
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/146-lru-huan-cun/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                146. LRU 缓存
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                MVCC 多版本并发控制
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                735. 行星碰撞
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/shi-wu-de-ge-chi-ji-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                事务的隔离级别
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/bing-fa-shi-wu-dai-lai-de-wen-ti/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                并发事务带来的问题
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/myisam-he-innodb-de-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                MyISAM和InnoDB的区别
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/mysql-shi-wu-jian-jie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                MySQL 事务简介
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/965-dan-zhi-er-cha-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                965. 单值二叉树
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/652-xun-zhao-chong-fu-de-zi-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                652. 寻找重复的子树
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/innodb-zhong-de-suo-yin/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                InnoDB中的B+树索引
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/dropdeletetruncate-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                drop、delete、truncate区别
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/shu-ju-ku-fan-shi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                数据库范式
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/jin-cheng-xian-cheng-xie-cheng-de-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                进程、线程、协程的区别
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                Golang常见控制结构Mutex
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/590-n-cha-shu-de-hou-xu-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                590. N 叉树的后序遍历
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/589-n-cha-shu-de-qian-xu-bian-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                589. N 叉树的前序遍历
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/559-n-cha-shu-de-zui-da-shen-du/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                559. N 叉树的最大深度
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/501-er-cha-sou-suo-shu-zhong-de-zhong-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                501. 二叉搜索树中的众数
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/297-er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                297. 二叉树的序列化与反序列化
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                236. 二叉树的最近公共祖先
+              </a>
+            </div>
+          </div>
+        
+          <div class="px-8 pb-5 flex relative overflow-hidden">
+            
+            <div class="flex-1">
+              <a href="https://kangaro0o.github.io/222-wan-quan-er-cha-shu-de-jie-dian-ge-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+                222. 完全二叉树的节点个数
+              </a>
+            </div>
+          </div>
+        
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+    
+      <a href="https://kangaro0o.github.io/archives/page/2" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+</html>

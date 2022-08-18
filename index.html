@@ -1,0 +1,327 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto ">
+      
+        <header class="flex py-16 md:py-32 mt-12 flex-col md:flex-row px-4 md:px-0 animated fadeIn">
+  <div class="flex-1 order-2 md:order-1 md:pr-16">
+    <div class="text-4xl font-bold text-center md:text-left">
+      天机阁
+    </div>
+    <div class="text-xl text-gray-500 mt-4 text-center md:text-left">
+      卑以自牧 不欺于心
+    </div>
+    
+    
+  </div>
+  <div class="md:mx-8 flex-shrink-0 self-start rounded-full border-4 border-dotted border-transparent hover:border-yellow-50 p-2 w-32 h-32 order-1 md:order-2 mx-auto s3-dotted">
+    <img class="rounded-full object-cover" src="https://kangaro0o.github.io//images/avatar.png?v=1660813164100" alt="天机阁" width="100%" height="100%">
+  </div>
+</header>
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/jian-zhi-offer-04-er-wei-shu-zu-zhong-de-cha-zhao/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          剑指 Offer 04. 二维数组中的查找
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">题目</a></h2>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/jian-zhi-offer-04-er-wei-shu-zu-zhong-de-cha-zhao/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/lintcode928-zui-duo-you-liang-ge-bu-tong-zi-fu-de-zui-chang-zi-chuan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          LintCode928. 最多有两个不同字符的最长子串
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://www.lintcode.com/problem/928">题目</a></h2>
+<p>给定一个字符串，找出最长子串TT的长度，它最多包含2个不同的字符。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/lintcode928-zui-duo-you-liang-ge-bu-tong-zi-fu-de-zui-chang-zi-chuan/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/124-er-cha-shu-zhong-de-zui-da-lu-jing-he/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          124. 二叉树中的最大路径和
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/">题目</a></h2>
+<p><strong>路径</strong> 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 至多出现一次 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。</p>
+<p>路径和 是路径中各节点值的总和。</p>
+<p>给你一个二叉树的根节点 root ，返回其 <strong>最大路径和</strong> 。</p>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/124-er-cha-shu-zhong-de-zui-da-lu-jing-he/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/783-er-cha-sou-suo-shu-jie-dian-zui-xiao-ju-chi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          783. 二叉搜索树节点最小距离
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/minimum-distance-between-bst-nodes/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/783-er-cha-sou-suo-shu-jie-dian-zui-xiao-ju-chi/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/530-er-cha-sou-suo-shu-de-zui-xiao-jue-dui-chai/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          530. 二叉搜索树的最小绝对差
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/">题目</a></h2>
+<p>给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。</p>
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/530-er-cha-sou-suo-shu-de-zui-xiao-jue-dui-chai/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/538-ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          538. 把二叉搜索树转换为累加树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/convert-bst-to-greater-tree/">题目</a></h2>
+<p>给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/538-ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/230-er-cha-sou-suo-shu-zhong-di-k-xiao-de-yuan-su/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          230. 二叉搜索树中第K小的元素
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-11</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/230-er-cha-sou-suo-shu-zhong-di-k-xiao-de-yuan-su/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/701-er-cha-sou-suo-shu-zhong-de-cha-ru-cao-zuo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          701. 二叉搜索树中的插入操作
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-11</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。</p>
+<p>注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 <strong>任意有效的结果</strong> 。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/701-er-cha-sou-suo-shu-zhong-de-cha-ru-cao-zuo/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/700-er-cha-sou-suo-shu-zhong-de-sou-suo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          700. 二叉搜索树中的搜索
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-11</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">题目</a></h2>
+<p>给定二叉搜索树（BST）的根节点 root 和一个整数值 val。</p>
+<p>你需要在 BST 中找到节点值等于 val 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 null 。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/700-er-cha-sou-suo-shu-zhong-de-sou-suo/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/450-shan-chu-er-cha-sou-suo-shu-zhong-de-jie-dian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          450. 删除二叉搜索树中的节点
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-08-11</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/delete-node-in-a-bst/">题目</a></h2>
+<p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
+<p>一般来说，删除节点可分为两个步骤：</p>
+<ol>
+<li>首先找到需要删除的节点；</li>
+<li>如果找到了，删除它。</li>
+</ol>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/450-shan-chu-er-cha-sou-suo-shu-zhong-de-jie-dian/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+    
+      <a href="https://kangaro0o.github.io/page/2" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+
+</html>

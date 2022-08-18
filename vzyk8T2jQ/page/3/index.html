@@ -1,0 +1,320 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        LeetCode
+      </h1>
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/200-dao-yu-shu-liang/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          200. 岛屿数量
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-28</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/200-dao-yu-shu-liang/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/31-xia-yi-ge-pai-lie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          31. 下一个排列
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-26</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/next-permutation/">题目</a></h2>
+<p>整数数组的一个 排列  就是将其所有成员以序列或线性顺序排列。</p>
+<ul>
+<li>例如，arr = [1,2,3] ，以下这些都可以视作 arr 的排列：[1,2,3]、[1,3,2]、[3,1,2]、[2,3,1] 。<br>
+整数数组的 下一个排列 是指其整数的下一个字典序更大的排列。更正式地，如果数组的所有排列根据其字典顺序从小到大排列在一个容器中，那么数组的 下一个排列 就是在这个有序容器中排在它后面的那个排列。如果不存在下一个更大的排列，那么这个数组必须重排为字典序最小的排列（即，其元素按升序排列）。</li>
+<li>例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。</li>
+<li>类似地，arr = [2,3,1] 的下一个排列是 [3,1,2] 。</li>
+<li>而 arr = [3,2,1] 的下一个排列是 [1,2,3] ，因为 [3,2,1] 不存在一个字典序更大的排列。<br>
+给你一个整数数组 nums ，找出 nums 的下一个排列。</li>
+</ul>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/31-xia-yi-ge-pai-lie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/206-fan-zhuan-lian-biao/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          206. 反转链表
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-25</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/reverse-linked-list/">题目</a></h2>
+<p>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/206-fan-zhuan-lian-biao/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/jian-zhi-offer-54-er-cha-sou-suo-shu-de-di-k-da-jie-dian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          剑指 Offer 54. 二叉搜索树的第k大节点
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">题目</a></h2>
+<p>给定一棵二叉搜索树，请找出其中第 k 大的节点的值。</p>
+<p>难度：🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/jian-zhi-offer-54-er-cha-sou-suo-shu-de-di-k-da-jie-dian/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/96-bu-tong-de-er-cha-sou-suo-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          96. 不同的二叉搜索树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees/">题目</a></h2>
+<p>给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/96-bu-tong-de-er-cha-sou-suo-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/95-bu-tong-de-er-cha-sou-suo-shu-ii/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          95. 不同的二叉搜索树 II
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">题目</a></h2>
+<p>给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。</p>
+<p>难度：🌟🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/95-bu-tong-de-er-cha-sou-suo-shu-ii/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/146-lru-huan-cun/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          146. LRU 缓存
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-14</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构。
+实现 LRUCache 类：
+
+LRUCache(int capacity) 以 正整数 作为容量 capacity 初始化 LRU 缓存
+int get(int...
+      </div>
+      <a href="https://kangaro0o.github.io/146-lru-huan-cun/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          735. 行星碰撞
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-14</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/asteroid-collision/">题目</a></h2>
+<p>给定一个整数数组 asteroids，表示在同一行的行星。</p>
+<p>对于数组中的每一个元素，其绝对值表示行星的大小，正负表示行星的移动方向（正表示向右移动，负表示向左移动）。每一颗行星以相同的速度移动。</p>
+<p>找出碰撞后剩下的所有行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/965-dan-zhi-er-cha-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          965. 单值二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/univalued-binary-tree/">题目</a></h2>
+<p>如果二叉树每个节点都具有相同的值，那么该二叉树就是单值二叉树。</p>
+<p>只有给定的树是单值二叉树时，才返回 true；否则返回 false。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/965-dan-zhi-er-cha-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/652-xun-zhao-chong-fu-de-zi-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          652. 寻找重复的子树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/find-duplicate-subtrees/">题目</a></h2>
+<p>给定一棵二叉树 root，返回所有重复的子树。</p>
+<p>对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。</p>
+<p>如果两棵树具有相同的结构和相同的结点值，则它们是重复的。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/652-xun-zhao-chong-fu-de-zi-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://kangaro0o.github.io/vzyk8T2jQ/page/2/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://kangaro0o.github.io/vzyk8T2jQ/page/4/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+</html>

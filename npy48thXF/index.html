@@ -1,0 +1,222 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        Go
+      </h1>
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/liang-ge-xie-cheng-jiao-ti-da-yin-0-100/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          两个协程交替打印0-100
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-27</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>使用无缓冲的 <code>channel</code>，使两个协程同步，按照相同的步调执行，但因为要交替打印，所以不能每次同步后都打印，要让该输出的协程输出，不该输出的协程不输出。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/liang-ge-xie-cheng-jiao-ti-da-yin-0-100/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang常见控制结构Mutex
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 <code>Lock()</code> 和 <code>Unlock()</code> 两个方法分别用于加锁和解锁。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/defer-de-shi-yong-ji-qi-yuan-li/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          defer 的使用及其原理
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        前言
+defer 语句用于延迟函数的调用，每次 defer 都会把一个函数压入栈中，函数返回前再把延迟的函数取出并执行。
+通常地，我们把创建 defer 的函数称为主函数，defer 语句后面的函数称为延迟函数。
+延迟函数可能有输入参数，这...
+      </div>
+      <a href="https://kangaro0o.github.io/defer-de-shi-yong-ji-qi-yuan-li/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/BiW6kmm9x/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang的map数据结构
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="map-数据结构">map 数据结构</h2>
+<p>Golang 的 <code>map</code> 使用哈希表作为底层实现，一个哈希表里可以有多个哈希表节点，也即 <code>bucket</code>，而每个 bucket 就保存了 map 中的一个或一组键值对。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/BiW6kmm9x/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/WJWWJzzg3/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Golang的chan数据结构
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-07</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>channel 是 Golang 在语言层面提供的 goroutine(协程)间的通信方式，比 Unix 管道更易用也更轻便。channel 主要用于进程内各 goroutine 间通信，如果需要跨进程通信，建议使用分布式系统的方法来解决。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/WJWWJzzg3/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/go-zhong-ru-he-zi-ding-yi-pai-xu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Go中如何自定义排序
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-06-28</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>排序应该是我们日常工作中经常使用到的算法，一般通过系统自带的 sort 库即可实现简单排序，但如果有一些定制化的需求，那么应该怎么排序呢？本文将简单阐述Go中如何自定义排序规则。</p>
+<h2 id="需求">需求</h2>
+<p>从具体需求中看Go中如何自定义排序规则。<br>
+假设我们有一堆信封[w, h]，w表示信封宽度，h表示信封高度。<br>
+现在我们需要对一堆信封排序，排序规则是按宽度从小到大，如果宽度相同，则按高度从大到小排。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/go-zhong-ru-he-zi-ding-yi-pai-xu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/trpc-go-ding-shi-qi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          tRPC-Go 分布式互斥定时器
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-05-15</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="一-前言">一、前言</h2>
+<p>在业务开发中，我们经常使用定时任务去处理一些任务，比如定时更新数据等。本文将在 tRPC-Go 的定时任务教程基础上，补充说明如果有多个定时任务，如何共用一个定时策略。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/trpc-go-ding-shi-qi/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+</html>

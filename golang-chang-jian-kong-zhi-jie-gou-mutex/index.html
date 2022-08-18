@@ -1,0 +1,427 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Golang常见控制结构Mutex - 天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Golang常见控制结构Mutex - 天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="前言
+互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 Lock() 和 Unlock() 两个方法分别用于加锁和解锁。
+
+Mutex 数据结构
+M..." />
+  <meta property="og:title" content="Golang常见控制结构Mutex - 天机阁">
+  <meta property="og:description" content="前言
+互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 Lock() 和 Unlock() 两个方法分别用于加锁和解锁。
+
+Mutex 数据结构
+M..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/" />
+  <meta property="og:image" content="https://kangaro0o.github.io//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Golang常见控制结构Mutex - 天机阁">
+  <meta name="twitter:description" content="前言
+互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 Lock() 和 Unlock() 两个方法分别用于加锁和解锁。
+
+Mutex 数据结构
+M...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://kangaro0o.github.io/golang-chang-jian-kong-zhi-jie-gou-mutex/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://kangaro0o.github.io//media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://kangaro0o.github.io/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      天机阁
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Golang常见控制结构Mutex
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-07-10 · 8 min read</div>
+          
+            <a href="https://kangaro0o.github.io/npy48thXF/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Go
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="前言">前言</h2>
+<p>互斥锁是并发程序中对共享资源进行访问控制的主要手段，对此 Go 语言提供了非常简单易用的 Mutex，Mutex 是一个结构体类型，对外暴露 <code>Lock()</code> 和 <code>Unlock()</code> 两个方法分别用于加锁和解锁。</p>
+<!-- more -->
+<h2 id="mutex-数据结构">Mutex 数据结构</h2>
+<h3 id="mutex-结构体">Mutex 结构体</h3>
+<p>在 <code>src/sync/mutex.go:Mutex</code> 中定义了互斥锁的数据结构：</p>
+<pre><code class="language-go">type Mutex struct {
+    state int32
+    sema  uint32
+}
+</code></pre>
+<p>结构体中变量说明：</p>
+<ul>
+<li>Mutex.state 表示互斥锁的状态，比如是否被锁定等；</li>
+<li>Mutex.sema 表示信号量，被阻塞的协程会等待该信号量，解锁的协程释放信号量从而唤醒等待信号量的协程；</li>
+</ul>
+<p>从结构体定义可知，Mutex.state 是32位的整型变量，内部实现时把该变量分成四份，用于记录 Mutex 的四种状态。<br>
+下图展示 Mutex 的内存布局：<br>
+<img src="https://kangaro0o.github.io//post-images/1657450022512.png" alt="" loading="lazy"></p>
+<ul>
+<li>Locked 表示该 Mutex 是否已被锁定，0: 没有锁定；1:已被锁定。</li>
+<li>Woken 表示是否有协程已被唤醒，0:没有协程唤醒；1:已有协程唤醒，正在加锁过程中。</li>
+<li>Starving 表示该 Mutex 是否处于饥饿状态，0:正常状态；1:饥饿状态，说明有协程阻塞超过了 1ms。</li>
+<li>Waiter 表示阻塞等待锁的协程个数，协程解锁时根据此值来判断是否需要释放信号量。</li>
+</ul>
+<p>协程之间抢锁实际上是抢给 <code>Locked</code> 赋值的权利，能给 <code>Locked</code> 域置1，则说明抢锁成功。<br>
+抢不到的话就阻塞等待 Mutex.sema 信号量，一旦持有锁的协程解锁，等待的协程会依次被唤醒。</p>
+<h3 id="mutex-方法">Mutex 方法</h3>
+<p>Mutex 对外提供两个方法：</p>
+<ul>
+<li>Lock() 加锁方法</li>
+<li>Unlock() 解锁方法</li>
+</ul>
+<h2 id="加解锁过程">加/解锁过程</h2>
+<h3 id="简单加锁">简单加锁</h3>
+<p>假设当前只有一个协程在加锁，没有其他协程干预，加锁过程如下图：<br>
+<img src="https://kangaro0o.github.io//post-images/1657450587665.png" alt="" loading="lazy"><br>
+<strong>说明：</strong> 加锁过程会去判断 <code>Locked</code> 标志位是否为0，如果是0则把 <code>Locked</code> 域置为1，代表加锁成功。<br>
+从上图看，加锁成功后，只是 <code>Locked</code> 置为1，其他状态位没发生变化。</p>
+<h3 id="加锁被阻塞">加锁被阻塞</h3>
+<p>假设加锁时，锁已被其他协程占用了，此时加锁过程如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657450760702.png" alt="" loading="lazy"><br>
+<strong>说明：</strong> 当协程B对一个已被占用的锁再次加锁时，<code>Waiter</code> 计数器增加了1，此时协程B将被阻塞，直到 <code>Locked</code> 值变为0后才会被唤醒。</p>
+<h3 id="简单解锁">简单解锁</h3>
+<p>假设解锁时，没有其他协程阻塞，此时解锁过程如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657450890875.png" alt="" loading="lazy"><br>
+<strong>说明：</strong> 由于没有其他协程被阻塞等待加锁，所以此时解锁时只需要把 <code>Locked</code> 域置为0即可，不需要释放信号量。</p>
+<h3 id="解锁并唤醒协程">解锁并唤醒协程</h3>
+<p>假设解锁时有一个或多个协程阻塞，此时解锁过程如下：<br>
+<img src="https://kangaro0o.github.io//post-images/1657451032068.png" alt="" loading="lazy"><br>
+<strong>说明：</strong> 协程A解锁过程分为两个步骤，一是把 <code>Locked</code> 域置为0，而是检测到 <code>Waiter &gt; 0</code>，所以释放一个信号量，唤醒一个阻塞的协程，被唤醒的协程B把 <code>Locked</code> 域置为1，于是协程B抢到了锁。</p>
+<h2 id="自旋过程">自旋过程</h2>
+<p>加锁时，如果当前 Locked 域为1，说明该锁当前右其他协程持有，尝试加锁的协程并不是马上转入阻塞，而是会持续的探测 Locked 域是否变为0，这个过程即为自旋过程。</p>
+<p>自旋时间很短，但如果在自旋过程中发现锁已被释放，那么协程可以立即获得锁。此时即便有协程被唤醒也无法获得锁，只能再次阻塞。</p>
+<p>自旋的好处是，当加锁失败时不必立即转入阻塞，有一定机会获取到锁，这样可以避免协程的切换。</p>
+<h3 id="什么是自旋">什么是自旋</h3>
+<p>自旋对应 CPU 的 “PAUSE” 指令，CPU 对该指令什么也不做，相当于 CPU 空转，对程序而言相当于 sleep 了一小段时间，时间非常短，当前实现是30个时钟周期。</p>
+<p>自旋过程会持续探测 Locked 是否变为0，连续两次探测间隔就是执行这些 “PAUSE” 指令，它不同于 sleep，不需要将协程转为睡眠状态。</p>
+<h3 id="自旋条件">自旋条件</h3>
+<p>加锁时程序会自动判断是否可以自旋，无限制的自旋将会给 CPU 带来巨大压力。<br>
+自旋必须满足以下所有条件：</p>
+<ul>
+<li>自旋次数要足够小，通常为4次，即自旋最多4次；</li>
+<li>CPU 核数要大于1，否则自旋没有意义，因为此时不可能有其他协程释放锁；</li>
+<li>协程调度机制中的 Process 数量要大于1，比如使用 GOMAXPROCS() 将处理器设置为1就不能启动自旋；</li>
+<li>协程调度机制中的可运行队列必须为空，否则会延迟协程调度。</li>
+</ul>
+<p>可见，自旋的条件是很苛刻的，总而言之，就是<strong>不忙的时候才会启用自旋</strong>。</p>
+<h3 id="自旋的优势">自旋的优势</h3>
+<p>自旋的优势是更加充分的利用 CPU，尽量避免协程切换。因为当前申请加锁的协程拥有 CPU，如果经过短时间的自旋可以获得锁，当前协程可以继续运行，不必进入阻塞状态。</p>
+<h3 id="自旋的问题">自旋的问题</h3>
+<p>如果自旋过程中获得锁，那么之前被阻塞的协程将无法获得锁，如果加锁的协程特别多，每次都通过自旋获得锁，那么之前被阻塞的进程将很难获得锁，从而进入饥饿状态。</p>
+<p>为了避免协程长时间无法获取锁，自1.8版本以来增加了一个状态，即 <code>Mutex.Starving</code> 状态。这个状态下不会自旋，一旦有协程释放锁，那么一定会唤醒一个协程并成功加锁。</p>
+<h2 id="mutex-模式">Mutex 模式</h2>
+<p>我们来看下 Starving 域的作用。<br>
+每个 Mutex 都有两个模式，成为 Normal 和 Starvation</p>
+<h3 id="normal-模式">Normal 模式</h3>
+<p>默认情况下，Mutex 为 Normal 模式。<br>
+该模式下，协程如果加锁不成功不会立即转入阻塞排队，而是判断是否满足自旋的条件，如果满足则会启动自旋锁，尝试抢锁。</p>
+<h3 id="starvation-模式">Starvation 模式</h3>
+<p>自旋过程中如果能抢到锁，一定意味着同一时刻有协程释放了锁，我们知道释放锁时如果发现有阻塞等待的协程，还会释放一个信号量来唤醒一个等待中的协程，被等待的协程得到 CPU 后开始运行，此时发现锁已经被抢占了，自己只好再次阻塞。<br>
+不过在阻塞前会判断自上次阻塞到本次阻塞经过了多长时间，如果超过了 1ms 的话，则会将 Mutex 标记为“饥饿模式”，然后再阻塞。<br>
+处于饥饿模式下，不会启动自旋过程，即此状态下，一旦有协程释放了锁，那么一定会唤醒等待中的协程，被唤醒的协程将会成功获取到锁，同时也会把 <code>Waiter</code> 等待计数减1。</p>
+<h2 id="woken-域">Woken 域</h2>
+<p>Woken 域用于加锁和解锁过程的通信，举个例子，同一时刻，两个协程，一个加锁，一个在解锁，在加锁的协程可能在自旋过程中，此时把 Woken 标记为1，用于通知解锁协程不必释放信号量了，好比在说，你只管解锁好了，不必释放信号量，我马上就拿到锁了。</p>
+<h2 id="为什么重复解锁要-panic">为什么重复解锁要 panic</h2>
+<p>可能你会想，为什么Go不能实现得更健壮些，多次执行Unlock()也不要panic？</p>
+<p>仔细想想Unlock的逻辑就可以理解，这实际上很难做到。Unlock过程分为将Locked置为0，然后判断Waiter值，如果值&gt;0，则释放信号量。</p>
+<p>如果多次Unlock()，那么可能每次都释放一个信号量，这样会唤醒多个协程，多个协程唤醒后会继续在Lock()的逻辑里抢锁，势必会增加Lock()实现的复杂度，也会引起不必要的协程切换。</p>
+<blockquote>
+<p>本文参考 https://www.bookstack.cn/read/GoExpertProgramming/chapter02-2.4-mutex.md</p>
+</blockquote>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#mutex-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">Mutex 数据结构</a>
+<ul>
+<li><a href="#mutex-%E7%BB%93%E6%9E%84%E4%BD%93">Mutex 结构体</a></li>
+<li><a href="#mutex-%E6%96%B9%E6%B3%95">Mutex 方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8A%A0%E8%A7%A3%E9%94%81%E8%BF%87%E7%A8%8B">加/解锁过程</a>
+<ul>
+<li><a href="#%E7%AE%80%E5%8D%95%E5%8A%A0%E9%94%81">简单加锁</a></li>
+<li><a href="#%E5%8A%A0%E9%94%81%E8%A2%AB%E9%98%BB%E5%A1%9E">加锁被阻塞</a></li>
+<li><a href="#%E7%AE%80%E5%8D%95%E8%A7%A3%E9%94%81">简单解锁</a></li>
+<li><a href="#%E8%A7%A3%E9%94%81%E5%B9%B6%E5%94%A4%E9%86%92%E5%8D%8F%E7%A8%8B">解锁并唤醒协程</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E6%97%8B%E8%BF%87%E7%A8%8B">自旋过程</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E6%97%8B">什么是自旋</a></li>
+<li><a href="#%E8%87%AA%E6%97%8B%E6%9D%A1%E4%BB%B6">自旋条件</a></li>
+<li><a href="#%E8%87%AA%E6%97%8B%E7%9A%84%E4%BC%98%E5%8A%BF">自旋的优势</a></li>
+<li><a href="#%E8%87%AA%E6%97%8B%E7%9A%84%E9%97%AE%E9%A2%98">自旋的问题</a></li>
+</ul>
+</li>
+<li><a href="#mutex-%E6%A8%A1%E5%BC%8F">Mutex 模式</a>
+<ul>
+<li><a href="#normal-%E6%A8%A1%E5%BC%8F">Normal 模式</a></li>
+<li><a href="#starvation-%E6%A8%A1%E5%BC%8F">Starvation 模式</a></li>
+</ul>
+</li>
+<li><a href="#woken-%E5%9F%9F">Woken 域</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%A4%8D%E8%A7%A3%E9%94%81%E8%A6%81-panic">为什么重复解锁要 panic</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://kangaro0o.github.io//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'S0EEJcJBfJYwFrxzaftrwGay-gzGzoHsz',
+    appKey: 'ORcgXh6yyLPwN5ajJeGvpR5g',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

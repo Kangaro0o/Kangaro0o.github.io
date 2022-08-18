@@ -1,0 +1,352 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>天机阁</title>
+<link rel="shortcut icon" href="https://kangaro0o.github.io//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//media/css/tailwind.css">
+<link rel="stylesheet" href="https://kangaro0o.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="天机阁 - Atom Feed" href="https://kangaro0o.github.io//atom.xml">
+
+    
+
+  <meta name="description" content="卑以自牧 不欺于心" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://kangaro0o.github.io//atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          MVCC 多版本并发控制
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-14</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+
+
+版本链
+ReadView（一致性视图）
+生成 ReadView 的时机
+MVCC 小结
+
+
+
+
+版本链
+对于使用 InnoDB 存储引擎的表来说，它的聚簇索引记录中都包含下面两个必要的隐藏列：
+
+trx_id：一个事务每次对某条聚簇索...
+      </div>
+      <a href="https://kangaro0o.github.io/mvcc-duo-ban-ben-bing-fa-kong-zhi/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          735. 行星碰撞
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-14</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/asteroid-collision/">题目</a></h2>
+<p>给定一个整数数组 asteroids，表示在同一行的行星。</p>
+<p>对于数组中的每一个元素，其绝对值表示行星的大小，正负表示行星的移动方向（正表示向右移动，负表示向左移动）。每一颗行星以相同的速度移动。</p>
+<p>找出碰撞后剩下的所有行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
+<p>难度：🌟🌟🌟</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/735-xing-xing-peng-zhuang/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/shi-wu-de-ge-chi-ji-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          事务的隔离级别
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-13</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        SQL 标准中的4中隔离级别
+SQL标准定义了四个隔离级别如下：
+
+READ UNCOMMITTED（未提交读）：允许读取尚未提交的变更数据。
+READ COMMITTED（已提交读）：允许读取事务已经提交的数据。
+REPEATABLE R...
+      </div>
+      <a href="https://kangaro0o.github.io/shi-wu-de-ge-chi-ji-bie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/bing-fa-shi-wu-dai-lai-de-wen-ti/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          并发事务带来的问题
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-13</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+
+
+前言
+更新丢失（脏写）
+脏读
+不可重复读
+幻读
+不可重复读和幻读的区别
+
+
+
+
+前言
+MySQL 数据库一般会并发执行多个事务，多个事务就可能会并发的对相同的数据进行增加、删除、修改和删除操作，这就可能导致出现并发事务的问题，并发事务...
+      </div>
+      <a href="https://kangaro0o.github.io/bing-fa-shi-wu-dai-lai-de-wen-ti/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/myisam-he-innodb-de-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          MyISAM和InnoDB的区别
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-13</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        MySQL 5.5之前，默认的存储引擎一直是 MyISAM。
+虽然 MyISAM 性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等），但是 MyISAM 不支持事务和行级锁，更甚至崩溃后无法安全恢复。
+因此 MySQL 5.5版本...
+      </div>
+      <a href="https://kangaro0o.github.io/myisam-he-innodb-de-qu-bie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://kangaro0o.github.io//post-images/myisam-he-innodb-de-qu-bie.png" alt="MyISAM和InnoDB的区别">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/mysql-shi-wu-jian-jie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          MySQL 事务简介
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-13</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+
+
+前言
+事务
+
+事务的四个特性
+
+原子性（Atomicity）
+隔离性（Isolation）
+一致性（Consistency）
+持久性（Durability）
+
+
+事务的状态
+
+
+🌈扩展知识：
+
+
+
+
+前言
+对于大部分程序员来说，他们...
+      </div>
+      <a href="https://kangaro0o.github.io/mysql-shi-wu-jian-jie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/965-dan-zhi-er-cha-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          965. 单值二叉树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/univalued-binary-tree/">题目</a></h2>
+<p>如果二叉树每个节点都具有相同的值，那么该二叉树就是单值二叉树。</p>
+<p>只有给定的树是单值二叉树时，才返回 true；否则返回 false。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/965-dan-zhi-er-cha-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/652-xun-zhao-chong-fu-de-zi-shu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          652. 寻找重复的子树
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="题目"><a href="https://leetcode.cn/problems/find-duplicate-subtrees/">题目</a></h2>
+<p>给定一棵二叉树 root，返回所有重复的子树。</p>
+<p>对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。</p>
+<p>如果两棵树具有相同的结构和相同的结点值，则它们是重复的。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/652-xun-zhao-chong-fu-de-zi-shu/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/innodb-zhong-de-suo-yin/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          InnoDB中的B+树索引
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="前言">前言</h2>
+<p>InnoDB 中的 B+ 树索引分为三种：聚簇索引、二级索引、联合索引。</p>
+
+      </div>
+      <a href="https://kangaro0o.github.io/innodb-zhong-de-suo-yin/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://kangaro0o.github.io/dropdeletetruncate-qu-bie/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          drop、delete、truncate区别
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-07-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        用法不同
+
+drop（丢弃数据）：drop table 表名，直接将表都删除掉，在删除表结构的时候使用；
+delete（删除数据）：delete from 表名 where 列名=值，删除某一行的数据，如果不加 where 子句，作用和 t...
+      </div>
+      <a href="https://kangaro0o.github.io/dropdeletetruncate-qu-bie/" class="btn">
+        点击阅读
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://kangaro0o.github.io/page/3/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://kangaro0o.github.io/page/5/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://kangaro0o.github.io//media/scripts/main.js"></script>
+</body>
+
+</html>
